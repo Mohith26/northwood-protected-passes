@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Protection · Northwood Core</title>
+<link rel="icon" href="assets/mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hdr">
+  <a class="logo" href="#" aria-label="Northwood"><img src="assets/wordmark.svg" alt="Northwood"></a>
+  <nav class="nav">
+    <a class="cell" href="#">Passes</a>
+    <a class="cell" href="#">Missions</a>
+    <a class="cell" href="#">Network</a>
+    <a class="cell active" href="#">Protection</a>
+    <a class="cell" href="#">API</a>
+    <a class="cell org" href="#"><span class="dot"></span>Mission Ops</a>
+  </nav>
+</header>
+
+<main>
+  <section class="split">
+    <div class="left">
+      <div class="intro">
+        <p class="eyebrow" id="eyebrow">Protection · 24 h plan</p>
+        <h1>Protected passes</h1>
+        <p class="lede" id="lede">Computing the plan…</p>
+      </div>
+      <div class="kpis" id="kpis"></div>
+      <div class="tbl-wrap">
+        <div class="tbl-head"><p class="eyebrow">Protected missions</p><p class="hint">Click a mission to highlight its passes</p></div>
+        <table class="tbl" id="missions">
+          <thead><tr><th>Mission</th><th>Tier</th><th class="r">SLA</th><th class="r">Certified</th><th class="r">Worst gap, any 1 site down</th><th class="r">Plan margin</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="right dark">
+      <div class="replay-head">
+        <p class="eyebrow light">Outage replay</p>
+        <h2 id="replay-title">Site outage</h2>
+        <div class="sites" id="sites"></div>
+        <div class="controls">
+          <label>Fails at <b id="startLbl"></b> UTC<input id="start" type="range" min="0" max="1425" step="15" value="0"></label>
+          <label>For
+            <select id="dur"><option value="120">2 h</option><option value="360">6 h</option><option value="720">12 h</option><option value="99999" selected>rest of day</option></select>
+          </label>
+        </div>
+      </div>
+      <div class="gantt" id="gantt"></div>
+      <div class="legend">
+        <span><i class="k prim"></i>Booked pass</span>
+        <span><i class="k pre"></i>Preemptible (on reserve)</span>
+        <span><i class="k lost"></i>Lost to outage</span>
+        <span><i class="k bk"></i>Backup activated</span>
+        <span><i class="k reb"></i>Rebooked after outage</span>
+        <span><i class="k cut"></i>Preempted</span>
+      </div>
+      <div class="cmp" id="cmp"></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="band-left">
+      <p class="eyebrow">How the guarantee is built</p>
+      <h3>Where the zero comes from</h3>
+      <p class="body" id="ablation-note"></p>
+      <div class="quotes" id="quotes"></div>
+    </div>
+    <div class="band-right">
+      <table class="tbl abl" id="ablation">
+        <thead><tr><th>Policy</th><th class="r">Breaches on certified sats</th><th class="r">Primary beam-h</th><th class="r">Reserve beam-h</th><th class="r">Standard passes preempted</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <p class="eyebrow" style="margin:34px 0 10px">Reserve by site</p>
+      <table class="tbl abl" id="bysite">
+        <thead><tr><th>Site</th><th class="r">Beams</th><th class="r">Booked beam-h</th><th class="r">Shared reserve beam-h</th><th class="r">Dedicated would hold</th><th class="r">Passes on reserve</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Unofficial concept demo by Mohith Gajjela. Not affiliated with Northwood Space. Synthetic data.</span>
+  <a href="https://github.com/Mohith26/northwood-protected-passes">Source and method</a>
+</footer>
+<div class="tip" id="tip"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
